@@ -1,0 +1,119 @@
+﻿@page
+@model WebApplicationMedical.Pages.Patient.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].SecondaryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].Passport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].GenderNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].InsurancePolicy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPatient[0].Medcard)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DPatient)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Photo" class="img-thumbnail" style="max-width:150px; max-height:150px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondaryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Passport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @if (item.GenderNavigation != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenderNavigation.Gender)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        NULL
+                    </td>
+                }
+                @if (item.InsurancePolicy != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InsurancePolicy.Id)
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        NULL
+                    </td>
+                }
+                @if (item.Medcard != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medcard.Id)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        NULL
+                    </td>
+                }
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

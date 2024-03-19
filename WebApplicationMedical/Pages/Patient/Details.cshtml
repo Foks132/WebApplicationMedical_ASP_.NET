@@ -1,0 +1,100 @@
+﻿@page
+@model WebApplicationMedical.Pages.Patient.DetailsModel
+
+@{
+    ViewData["Title"] = "Информация о пациенте";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Пациент</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Photo)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Html.DisplayFor(model => model.DPatient.Photo)" class="img-thumbnail" style="max-width:150px"/>
+        </dd>
+        <dt class="col-sm-2">
+            QR-Код
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.QrCode" class="img-thumbnail" style="max-width:150px"/>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.SecondaryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.SecondaryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Passport)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.Passport)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.GenderNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.GenderNavigation.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.InsurancePolicy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.InsurancePolicyId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Medcard)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.MedcardId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DPatient.Medcard.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DPatient.Medcard.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <div>
+        <button class="btn btn-outline-primary" onclick="Print()">Печать</button>
+    </div>
+    <a asp-page="./Edit" asp-route-id="@Model.DPatient?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+<script type="text/javascript">
+    function Print() {
+        window.print();
+    }
+</script>

@@ -1,0 +1,52 @@
+﻿@page
+@model WebApplicationMedical.Pages.Patient.SearchModel
+
+@{
+    ViewData["Title"] = "Поиск пациента";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Пациент</h4>
+<hr />
+<div class="col-md-4">
+    <form method="post" asp-controller="Search" asp-action="Upload" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="MedcardId" class="control-label"></label>
+            <input asp-for="MedcardId" class="form-control" value="@Model.Patient?.MedcardId" />
+            @*<span asp-validation-for="MedcardId" class="text-danger"></span>*@
+        </div>
+        <div class="form-group">
+            <label class="control-label">Файл</label>
+            <input type="file" asp-for="QrCode" class="form-control" />
+            @*<span asp-validation-for="MedcardId" class="text-danger"></span>*@
+        </div>
+        @if (Model.Patient != null)
+        {
+            
+            <div class="form-group row">
+                <label asp-for="Patient.FIO" class="control-label"></label>
+                <h5 class="control-label">@Model.Patient?.FIO</h5>
+            </div>
+            <div class="form-group">
+                <label class="control-label">QR-код</label>
+                <img src="@Model.QrCode" class="img-thumbnail" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary mt-3">Поиск</button>
+        @if (Model.Patient != null)
+        {
+            <div>
+                <button asp-page-handler="Document" class="btn btn-secondary mt-3">Формировать договор</button>
+                <button asp-page-handler="DocumentPD" class="btn btn-secondary mt-3">Формировать согласие на обработку ПД</button>
+                <div class="form-group">
+                    <label class="control-label">Формировать в PDF</label>
+                    <input asp-for="IsChecked"/>
+                </div>
+                <a asp-page="./Details" asp-route-id="@Model.Patient?.Id" class="btn btn-outline-info mt-3">Подробная информация о пациенте</a>
+            </div>
+
+        }
+    </form>
+</div>
